@@ -18,12 +18,12 @@ class Ask {
             },
             {
                 type: 'input',
-                name: 'fontcolor',
+                name: 'textColor',
                 message: 'What if your font color? (enter hexidecimal code)',
             },
             {
                 type: 'input',
-                name: 'color',
+                name: 'shapeColor',
                 message: 'What if your background color? (enter hexidecimal code)',
             },
             {
@@ -52,7 +52,7 @@ class Ask {
            this.shape = new Square(this.answers.color);
         }
         console.log(this.shape.render());
-    
+
     } 
 
 
