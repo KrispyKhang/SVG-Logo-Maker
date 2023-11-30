@@ -1,9 +1,11 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
+const {Triangle, Circle, Square} = require('./lib/shape');
 
 class Ask {
     constructor() {
-        this.answers
+        this.answers;
+        this.shape;
 
     }
 
@@ -11,7 +13,7 @@ class Ask {
         inquirer.prompt([
             {
                 type: 'input',
-                name: 'text',
+                name: 'letters',
                 message: 'What are the 3 letters of the text?',
             },
             {
@@ -42,13 +44,21 @@ class Ask {
 
 
     writeFile() {
-        console.log(this.answers);
+        if (this.answers.shape === "Triangle") {
+            this.shape = new Triangle(this.answers.color);
+        } else if (this.answers.shape === "Circle") {
+            this.shape = new Circle(this.answers.color);
+        } else if (this.answers.shape === "Square") {
+           this.shape = new Square(this.answers.color);
+        }
+        console.log(this.shape.render());
+    
+    } 
 
-    }
 
 
 }
 
 const input = new Ask() 
 input.initialize();
- 
+   
