@@ -39,7 +39,7 @@ The task is to build a Node.js command-line application that takes in user input
 - Inquirer package (npm i inquirer) - command line interface for node js to run your prompts
 
 ## Walkthrough
-![](./ReadMeAssets/walkthrough.gif.sb-5b1e616b-bZ8lMR)
+![](./ReadMeAssets/Jan-28-2024%2011-19-53.gif)
 
 - As you view the walkthrough. We opened our terminal and did "npm test" from our jest package where we test to see if our js works.
 - Then ran "nodemon server" where we run the inquirer prompt.
