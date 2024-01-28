@@ -1,64 +1,40 @@
 const inquirer = require('inquirer');
-const fs = require('fs');
-const {Triangle, Circle, Square} = require('./lib/shape');
+const generateLogo = require('./lib/generateLogo.js');
 
-class Ask {
-    constructor() {
-        this.answers;
-        this.shape;
+function main () {
+    inquirer.prompt([
+        {
+            name: 'text',
+            message: 'Enter up to 3 characters:'
+        },
 
-    }
+        {
+            name: 'textColor',
+            message: 'Enter text color (keyword or hexadecimal):'
+        },
 
-    initialize() {
-        inquirer.prompt([
-            {
-                type: 'input',
-                name: 'letters',
-                message: 'What are the 3 letters of the text?',
-            },
-            {
-                type: 'input',
-                name: 'textColor',
-                message: 'What if your font color? (enter hexidecimal code)',
-            },
-            {
-                type: 'input',
-                name: 'shapeColor',
-                message: 'What if your background color? (enter hexidecimal code)',
-            },
-            {
-                type: 'list',
-                name: 'shape',
-                message: 'Select a shape',
-                choices: [
-                    "Circle",
-                    "Triangle",
-                    "Square",
-                ],
-            }
-        ]).then(answers => {
-            this.answers = answers
-            this.writeFile();
-        })
-    }
+        {
+            name: 'shape',
+            type: 'list',
+            message: 'Choose a shape:',
+            choices: ['triangle', 'circle', 'square']
+        },
 
-
-    writeFile() {
-        if (this.answers.shape === "Triangle") {
-            this.shape = new Triangle(this.answers.color);
-        } else if (this.answers.shape === "Circle") {
-            this.shape = new Circle(this.answers.color);
-        } else if (this.answers.shape === "Square") {
-           this.shape = new Square(this.answers.color);
+        {
+            name: 'shapeColor',
+            message: 'Enter shape color (keyword or hexadecimal):'
         }
-        console.log(this.shape.render());
+    ])
 
-    } 
+    .then(answers => {
+        generateLogo(answers.text, answers.textColor, answers.shape, answers.shapeColor);
 
+        console.log("Generated logo.svg");
+    })
 
-
+    .catch(error => {
+        console.error("An error occurred:", error);
+    });
 }
 
-const input = new Ask() 
-input.initialize();
-   
+main();
